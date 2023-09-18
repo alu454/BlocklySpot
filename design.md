@@ -26,3 +26,16 @@ This should ping Spot
 This should request for Spot's unique serial number, nickname, robot type, software version, and install date. This should be used for confirming the syntax of how the program should compile.
 
 `python3 -m bosdyn.client 192.168.80.3 id`
+
+
+## Move Left
+**Description** This should move the dog left, this will be done by calling upon the Spot's API to move the arms/legs at the proper velocity/range.
+
+## Move Right
+**Description** This should move the dog right this will be done by calling upon the Spot's API to move the arms/legs at the proper velocity/range.
+
+## Move Up 
+**Description** This should move the dog up this will be done by calling upon the Spot's API to move the arms/legs at the proper velocity/range.
+
+## Move Down
+**Description** This should move the dog down this will be done by calling upon the Spot's API to move the arms/legs at the proper velocity/range.
