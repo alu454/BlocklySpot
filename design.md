@@ -9,10 +9,9 @@ This document that contains a preliminary desgin of some of the blocks inside th
 ## Download Repositories
 This should download the repos. Depending on how the DSL is installed, this may not be needed
 
-
-
 ## Import Packages
 This should make sure 
+
 
 
 ## Dog Instantiation Block
@@ -28,14 +27,16 @@ This should request for Spot's unique serial number, nickname, robot type, softw
 `python3 -m bosdyn.client 192.168.80.3 id`
 
 
-## Move Left
+## Movement Blocks
+These blocks should move Spot directions
+### Move Left
 **Description** This should move the dog left, this will be done by calling upon the Spot's API to move the arms/legs at the proper velocity/range.
 
-## Move Right
+### Move Right
 **Description** This should move the dog right this will be done by calling upon the Spot's API to move the arms/legs at the proper velocity/range.
 
-## Move Up 
+### Move Up 
 **Description** This should move the dog up this will be done by calling upon the Spot's API to move the arms/legs at the proper velocity/range.
 
-## Move Down
+### Move Down
 **Description** This should move the dog down this will be done by calling upon the Spot's API to move the arms/legs at the proper velocity/range.
