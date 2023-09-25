@@ -1,98 +1,182 @@
-Blockly.Blocks['abs'] = {
+// Setup Block
+Blockly.Blocks['setup'] = {
     init: function() {
-      this.appendValueInput("VAR")
-          .setCheck("var")
-          .appendField("λ");
-      this.appendValueInput("EXPR")
-          .setCheck(["var", "exp", "Number"]);
-      this.setInputsInline(true);
-      this.setOutput(true, "exp");
-      this.setColour(130);
-      this.setTooltip("");
-      this.setHelpUrl("");
+        this.appendDummyInput().appendField("Setup Environment");
+        this.setColour(230);
+        this.setTooltip("Install necessary packages and set up the environment.");
+        this.setHelpUrl("");
     }
-  };
-  
-  Blockly.Blocks['app'] = {
+};
+
+// Download Repositories Block
+Blockly.Blocks['download_repos'] = {
     init: function() {
-      this.appendValueInput("EXPR1")
-          .setCheck(["var", "exp", "Number"])
-          .appendField("app");
-      this.appendValueInput("EXPR2")
-          .setCheck(["var", "exp", "Number"]);
-      this.setInputsInline(true);
-      this.setOutput(true, "exp");
-      this.setColour(330);
-      this.setTooltip("");
-      this.setHelpUrl("");
+        this.appendDummyInput().appendField("Download Repositories");
+        this.setColour(240);
+        this.setTooltip("Download the required repositories.");
+        this.setHelpUrl("");
     }
-  };
-  
-  Blockly.Blocks['var'] = {
+};
+
+// Import Packages Block
+Blockly.Blocks['import_packages'] = {
     init: function() {
-      this.appendDummyInput()
-          .appendField("var")
-          .appendField(new Blockly.FieldTextInput("x"), "NAME");
-      this.setOutput(true, "var");
-      this.setColour(430);
-      this.setTooltip("");
-      this.setHelpUrl("");
+        this.appendDummyInput().appendField("Import Packages");
+        this.setColour(250);
+        this.setTooltip("Ensure the necessary packages are imported.");
+        this.setHelpUrl("");
     }
-  };
-  Blockly.Blocks['math_number'] = {
-    /**
-     * Block for numeric value.
-     * @this {Blockly.Block}
-     */
+};
+
+// Dog Instantiation Block
+Blockly.Blocks['dog_instantiate'] = {
     init: function() {
-      this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
-      this.setColour(Blockly.Msg.MATH_HUE);
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldNumber('3'), 'NUM');
-      this.setOutput(true, 'Number');
-      this.setTooltip(Blockly.Msg.MATH_NUMBER_TOOLTIP);
+        this.appendValueInput("IP_ADDRESS")
+            .setCheck("String")
+            .appendField("Instantiate Dog at IP");
+        this.setOutput(true, "Dog");
+        this.setColour(260);
+        this.setTooltip("Create an instance of the Dog using its IP address.");
+        this.setHelpUrl("");
     }
-  };
-  Blockly.JavaScript.forBlock['abs'] = function(block) {
-    var var_name = Blockly.JavaScript.valueToCode(block, 'VAR', Blockly.JavaScript.ORDER_NONE);
-    var expr_code = Blockly.JavaScript.valueToCode(block, 'EXPR', Blockly.JavaScript.ORDER_NONE);
-    var code = '(' + var_name + ' => ' + expr_code + ')';
-    return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
-  };
-  
-  Blockly.JavaScript.forBlock['app'] = function(block) {
-    var expr1_code = Blockly.JavaScript.valueToCode(block, 'EXPR1', Blockly.JavaScript.ORDER_NONE);
-    var expr2_code = Blockly.JavaScript.valueToCode(block, 'EXPR2', Blockly.JavaScript.ORDER_NONE);
-    var code = '(' + expr1_code + ')(' + expr2_code + ')';
-    return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
-  };
-  
-  Blockly.JavaScript.forBlock['var'] = function(block) {
-    var var_name = block.getFieldValue('NAME');
-    var code = var_name;
-    return [code, Blockly.JavaScript.ORDER_ATOMIC];
-  };
-  Blockly.Blocks['math_arithmetic'] = {
-    /**
-     * Block for arithmetic operations.
-     * @this {Blockly.Block}
-     */
+};
+
+// Ping Spot Block
+Blockly.Blocks['ping_spot'] = {
     init: function() {
-      this.setHelpUrl(Blockly.Msg.MATH_ARITHMETIC_HELPURL);
-      this.setColour(Blockly.Msg.MATH_HUE);
-      this.setOutput(true, 'Number');
-      this.appendValueInput('A')
-          .setCheck(['Number', 'var', 'exp']);
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldDropdown([
-              ['+', 'ADD'],
-              ['-', 'MINUS'],
-              ['\u00D7', 'MULTIPLY'],
-              ['\u00F7', 'DIVIDE'],
-              ['^', 'POWER']]), 'OP');
-      this.appendValueInput('B')
-          .setCheck(['Number', 'var', 'exp']);
-      this.setInputsInline(true);
-      this.setTooltip(Blockly.Msg.MATH_ARITHMETIC_TOOLTIP);
+        this.appendValueInput("IP_ADDRESS")
+            .setCheck("String")
+            .appendField("Ping Spot at IP");
+        this.setColour(270);
+        this.setTooltip("Ping Spot to check its availability.");
+        this.setHelpUrl("");
     }
-  };
+};
+
+// Request Spot's ID Block
+Blockly.Blocks['request_spot_id'] = {
+    init: function() {
+        this.appendValueInput("IP_ADDRESS")
+            .setCheck("String")
+            .appendField("Request Spot ID at IP");
+        this.setOutput(true, "SpotID");
+        this.setColour(280);
+        this.setTooltip("Request unique details of Spot.");
+        this.setHelpUrl("");
+    }
+};
+
+// Movement Blocks
+// Move Left
+Blockly.Blocks['move_left'] = {
+    init: function() {
+        this.appendDummyInput().appendField("Move Left");
+        this.setColour(290);
+        this.setTooltip("Make the dog move to the left.");
+        this.setHelpUrl("");
+    }
+};
+
+// Move Right
+Blockly.Blocks['move_right'] = {
+    init: function() {
+        this.appendDummyInput().appendField("Move Right");
+        this.setColour(300);
+        this.setTooltip("Make the dog move to the right.");
+        this.setHelpUrl("");
+    }
+};
+
+// Move Up
+Blockly.Blocks['move_up'] = {
+    init: function() {
+        this.appendDummyInput().appendField("Move Up");
+        this.setColour(310);
+        this.setTooltip("Make the dog move upwards.");
+        this.setHelpUrl("");
+    }
+};
+
+// Move Down
+Blockly.Blocks['move_down'] = {
+    init: function() {
+        this.appendDummyInput().appendField("Move Down");
+        this.setColour(320);
+        this.setTooltip("Make the dog move downwards.");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['rotate_clockwise'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Rotate Clockwise");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(340);
+        this.setTooltip("Rotate Spot in place, clockwise.");
+    }
+};
+
+Blockly.Blocks['rotate_counterclockwise'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Rotate Clockwise");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(350);
+        this.setTooltip("Rotate Spot in place, clockwise.");
+    }
+};
+
+
+Blockly.Blocks['emergency_stop'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Emergency Stop");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(360);
+        this.setTooltip("An immediate command to halt all of Spot's ongoing actions.");
+    }
+};
+
+Blockly.Blocks['play_sound'] = {
+    init: function() {
+        this.appendValueInput("SOUND_FILE")
+            .setCheck("String")
+            .appendField("Play sound");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(370);
+        this.setTooltip("Direct Spot to play a predetermined sound.");
+    }
+};
+
+Blockly.Blocks['repeat_x_times'] = {
+    init: function() {
+        this.appendValueInput("TIMES")
+            .setCheck("Number")
+            .appendField("Repeat");
+        this.appendDummyInput()
+            .appendField("times");
+        this.appendStatementInput("DO")
+            .setCheck(null);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(380);
+        this.setTooltip("Command Spot to repeat a series of actions a specified number of times.");
+    }
+};
+
+Blockly.Blocks['if_object_detected'] = {
+    init: function() {
+        this.appendStatementInput("DO")
+            .setCheck(null)
+            .appendField("If object detected");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(390);
+        this.setTooltip("Conditional execution: if Spot detects an object, it will perform a designated action.");
+    }
+};
