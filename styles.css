@@ -1,0 +1,65 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    background-color: #e8e8e8;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin: 10px 0;
+}
+
+/* Flex-grow added here */
+.row.blockly-row {
+    flex-grow: 1;
+    min-height: 50vh; 
+}
+
+.full-width {
+    flex: 1;
+    overflow: auto;
+    border: 1px solid #d4d4d4;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.half-width {
+    flex-basis: calc(50% - 20px);
+    margin-right: 20px;
+    overflow: auto;
+    border: 1px solid #d4d4d4;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    gap: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #808080;
+    color: white;
+}
+
+button:hover {
+    background-color: #D3D3D3;
+}

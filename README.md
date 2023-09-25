@@ -1,5 +1,8 @@
 # Boston_Dynamics_Dog_API
 
+[View Our Project](https://github.com/kango20/Boston_Dynamics_Dogs_API/blob/main/design-blocks.html)
+
+
 **Group Members:** 
 Drew Bozarth, Alan Lu, Karen Ngo, Thomas Ogawa
 
