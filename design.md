@@ -1,6 +1,6 @@
 <!-- contains a preliminary design of at least some of the blocks of the DSL together with their semantics (that is,  with a (possibly high-level) description of the code that will be executed when the block is called). -->
 # Preliminary Design 
-This document that contains a preliminary desgin of some of the blocks inside this DSL. This will contain their semantics and a general description of what this block shoudl do, and what code should be executed when this block is called. 
+This document that contains a preliminary desgin of some of the blocks inside this DSL. This will contain their general description of what this block should do, and may contain pseudo code or code examples that the block should run when used. 
 
 ## Setup Block
 **Description** This should install all nessecary packages and repositories needed to run the program. This should also set up the environment.
