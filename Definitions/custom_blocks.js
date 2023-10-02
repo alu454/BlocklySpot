@@ -87,23 +87,59 @@ Blockly.Blocks['move_right'] = {
     }
 };
 
-// Move Up
-Blockly.Blocks['move_up'] = {
+// Move Forward
+Blockly.Blocks['move_forward'] = {
     init: function() {
-        this.appendDummyInput().appendField("Move Up");
-        this.setColour(310);
-        this.setTooltip("Make the dog move upwards.");
-        this.setHelpUrl("");
+      this.appendValueInput("distance")
+          .setCheck("Number")
+          .appendField("Move Forward distance");
+      this.appendDummyInput()
+          .appendField("meters");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Move Spot forward by the specified distance");
+      this.setHelpUrl("");
     }
 };
 
-// Move Down
-Blockly.Blocks['move_down'] = {
+// Move Backward
+Blockly.Blocks['move_backward'] = {
     init: function() {
-        this.appendDummyInput().appendField("Move Down");
-        this.setColour(320);
-        this.setTooltip("Make the dog move downwards.");
-        this.setHelpUrl("");
+      this.appendValueInput("distance")
+          .setCheck("Number")
+          .appendField("Move Backward distance");
+      this.appendDummyInput()
+          .appendField("meters");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Move Spot backward by the specified distance");
+      this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['stand'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Stand");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Command Spot to stand");
+      this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['sit'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Sit");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Command Spot to sit");
+      this.setHelpUrl("");
     }
 };
 
@@ -179,4 +215,88 @@ Blockly.Blocks['if_object_detected'] = {
         this.setColour(390);
         this.setTooltip("Conditional execution: if Spot detects an object, it will perform a designated action.");
     }
+};
+
+Blockly.Blocks['power_off'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Power Off Spot");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Power off Spot robot");
+      this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['number_input'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldNumber(0), "NUMBER");
+      this.setOutput(true, "Number");
+      this.setColour(230);
+      this.setTooltip("A changeable number input");
+      this.setHelpUrl("");
+    }
+};
+
+
+Blockly.Python['number_input'] = function(block) {
+    var number = block.getFieldValue('NUMBER');
+    return [number, Blockly.Python.ORDER_ATOMIC];
+};
+
+
+Blockly.Python['power_off'] = function(block) {
+    var code = 'robot.power_off(cut_immediately=False)\n';
+    return code;
+};
+
+Blockly.Python['move_forward'] = function(block) {
+    // Generate Python code for moving forward.
+    var distance = Blockly.Python.valueToCode(block, 'distance', Blockly.Python.ORDER_ATOMIC) || '0';
+    var code = 'distance_forward = ' + distance + '\n';
+    code += 'velocity_forward = 0.2  # Replace with your desired forward velocity\n';
+    code += 'duration_forward = distance_forward / velocity_forward\n\n';
+    code += 'cmd_forward = blocking_walk_velocity(velocity=velocity_forward, duration=duration_forward)\n';
+    code += 'robot_command_client.robot_command(cmd_forward)\n';
+    return code;
+};
+
+Blockly.Python['move_backward'] = function(block) {
+    var distance = Blockly.Python.valueToCode(block, 'distance', Blockly.Python.ORDER_ATOMIC) || '0';
+    var code = 'distance_backward = ' + distance + '\n';
+    code += 'velocity_backward = -0.2  # Replace with your desired backward velocity\n';
+    code += 'duration_backward = distance_backward / abs(velocity_backward)\n\n';
+    code += 'cmd_backward = blocking_walk_velocity(velocity=velocity_backward, duration=duration_backward)\n';
+    code += 'robot_command_client.robot_command(cmd_backward)\n';
+    return code;
+};
+
+Blockly.Python['stand'] = function(block) {
+    var code = 'cmd_stand = blocking_stand()\n';
+    code += 'robot_command_client.robot_command(cmd_stand)\n';
+    return code;
+};
+
+Blockly.Python['sit'] = function(block) {
+    var code = 'cmd_sit = blocking_sit()\n';
+    code += 'robot_command_client.robot_command(cmd_sit)\n';
+    return code;
+};
+
+
+// Validate the generated Python code
+Blockly.Python.validate = function(code) {
+    var lines = code.split('\n');
+    for (var i = 1; i < lines.length; i++) {
+      var currentBlock = lines[i].trim();
+      var previousBlock = lines[i - 1].trim();
+  
+      // Check if a 'sit' block is preceded by a 'stand' block
+      if (currentBlock.startsWith('cmd_sit') && !previousBlock.startsWith('cmd_stand')) {
+        return 'Sit block must be preceded by a Stand block.';
+      }
+    }
+    return null;  // Code is valid
 };
