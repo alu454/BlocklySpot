@@ -1,6 +1,6 @@
 # Boston_Dynamics_Dog_API
 
-[View Our Project](https://kango20.github.io/BlocklySpot)
+[View Our Project](https://alu454.github.io/BlocklySpot)
 
 
 **Group Members:** 
