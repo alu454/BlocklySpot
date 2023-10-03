@@ -18,7 +18,7 @@
     <div class="row blockly-row">
         <div id="blocklyDiv" class="full-width"></div>
         <xml id="toolbox" style="display: none">
-            <block type="dog_instantiate"></block>
+            <!-- <block type="dog_instantiate"></block>
             <block type="ping_spot"></block>
             <block type="request_spot_id"></block>
             <block type="move_left"></block>
@@ -30,12 +30,20 @@
             <block type="emergency_stop"></block>
             <block type="play_sound"></block>
             <block type="repeat_x_times"></block>
-            <block type="if_object_detected"></block>
+            <block type="if_object_detected"></block> -->
+
+           <block type="LEG_HIND_RIGHT"></block> 
+           <block type="LEG_HIND_LEFT"></block> 
+           <block type="LEG_NO_LEG"></block> 
+           <block type="LEG_FRONT_RIGHT"></block> 
+           <block type="LEG_FRONT_LEFT"></block>  
+           <block type="move"></block>
+           <block type="number_input"></block>
         </xml>
     </div>
     <div class="row button-row">
-        <button onclick="generateCode()">Generate Python</button>
-        <button onclick="runCode()">Run Python</button>
+        <button onclick="generateCode()">Generate JavaScript</button>
+        <button onclick="runCode()">Run JavaScript</button>
         <button onclick="saveBlocks()">Save Blocks</button>
         <button onclick="loadBlocks()">Load Blocks</button>
         <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
@@ -51,12 +59,12 @@
         });
 
         function generateCode() {
-            var code = Blockly.Python.workspaceToCode(workspace);
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
             document.getElementById('codeDiv').innerText = code;
         }
 
         function runCode() {
-            var code = Blockly.Python.workspaceToCode(workspace);
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
             try {
                 var output = eval(code);
                 document.getElementById('outputDiv').innerText = output;
