@@ -5,7 +5,7 @@
 <h1> Work Distribution </h1>
 <h3> Alan Lu </h3>
 <ul>
-    <li> [Researched Boston Dynamic Dog API](https://github.com/alu454/BlocklySpot/blob/main/annotated-references.md) </li>
+    <li> ['Researched Boston Dynamic Dog API'](https://github.com/alu454/BlocklySpot/blob/main/annotated-references.md) </li>
     <li> [Blockly code](https://github.com/alu454/BlocklySpot/blob/main/milestone1/design-blocks.html) </li>
     <li> [Spot code](https://github.com/alu454/BlocklySpot/blob/main/milestone1/custom_blocks.js) </li>
 </ul>
