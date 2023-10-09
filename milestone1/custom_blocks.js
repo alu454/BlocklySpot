@@ -87,23 +87,59 @@ Blockly.Blocks['move_right'] = {
     }
 };
 
-// Move Up
-Blockly.Blocks['move_up'] = {
+// Move Forward
+Blockly.Blocks['move_forward'] = {
     init: function() {
-        this.appendDummyInput().appendField("Move Up");
-        this.setColour(310);
-        this.setTooltip("Make the dog move upwards.");
-        this.setHelpUrl("");
+      this.appendValueInput("distance")
+          .setCheck("Number")
+          .appendField("Move Forward distance");
+      this.appendDummyInput()
+          .appendField("meters");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Move Spot forward by the specified distance");
+      this.setHelpUrl("");
     }
 };
 
-// Move Down
-Blockly.Blocks['move_down'] = {
+// Move Backward
+Blockly.Blocks['move_backward'] = {
     init: function() {
-        this.appendDummyInput().appendField("Move Down");
-        this.setColour(320);
-        this.setTooltip("Make the dog move downwards.");
-        this.setHelpUrl("");
+      this.appendValueInput("distance")
+          .setCheck("Number")
+          .appendField("Move Backward distance");
+      this.appendDummyInput()
+          .appendField("meters");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Move Spot backward by the specified distance");
+      this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['stand'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Stand");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Command Spot to stand");
+      this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['sit'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Sit");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Command Spot to sit");
+      this.setHelpUrl("");
     }
 };
 
@@ -181,178 +217,86 @@ Blockly.Blocks['if_object_detected'] = {
     }
 };
 
-
-
-
-Blockly.Blocks['LEG_HIND_RIGHT'] = {
+Blockly.Blocks['power_off'] = {
     init: function() {
-        this.setOutput(true, "LegType");
-        this.appendDummyInput()
-            .appendField("Hind Right Leg");
-        this.setColour(400);
-        this.setTooltip("Represents the hind right leg.");
-        this.setHelpUrl("");
+      this.appendDummyInput()
+          .appendField("Power Off Spot");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(230);
+      this.setTooltip("Power off Spot robot");
+      this.setHelpUrl("");
     }
 };
-
-Blockly.Blocks['LEG_HIND_LEFT'] = {
-    init: function() {
-        this.setOutput(true, "LegType");
-        this.appendDummyInput()
-            .appendField("Hind Left Leg");
-        this.setColour(410);
-        this.setTooltip("Represents the hind left leg.");
-        this.setHelpUrl("");
-    }
-};
-
-Blockly.Blocks['LEG_NO_LEG'] = {
-    init: function() {
-        this.setOutput(true, "LegType");
-        this.appendDummyInput()
-            .appendField("No Leg");
-        this.setColour(420);
-        this.setTooltip("No specific leg.");
-        this.setHelpUrl("");
-    }
-};
-
-Blockly.Blocks['LEG_FRONT_RIGHT'] = {
-    init: function() {
-        this.setOutput(true, "LegType");
-        this.appendDummyInput()
-            .appendField("Front Right Leg");
-        this.setColour(430);
-        this.setTooltip("Represents the front right leg.");
-        this.setHelpUrl("");
-    }
-};
-
-Blockly.Blocks['LEG_FRONT_LEFT'] = {
-    init: function() {
-        this.setOutput(true, "LegType");
-        this.appendDummyInput()
-            .appendField("Front Left Leg");
-        this.setColour(440);
-        this.setTooltip("Represents the front left leg.");
-        this.setHelpUrl("");
-    }
-};
-
-
-
-
-Blockly.Blocks['move'] = {
-    init: function() {
-        this.appendValueInput("Leg")
-            .setCheck("LegType")
-            .appendField("Move");
-        this.appendValueInput("ValueX")
-            .setCheck("Number")
-            .appendField("by X:");
-        this.appendValueInput("ValueY")
-            .setCheck("Number")
-            .appendField("by Y:");
-        this.appendValueInput("StartSlice")
-            .setCheck("Number")
-            .appendField("Start Slice:");
-        this.appendValueInput("RequestedSlices")
-            .setCheck("Number")
-            .appendField("Requested Slices:");
-        this.appendValueInput("SecondFoot")
-            .setCheck("LegType")
-            .appendField("Second Foot:");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(450);
-        this.setTooltip("Move a specific leg by the given X and Y values.");
-        this.setHelpUrl("");
-    }
-};
-
-
-Blockly.JavaScript['number_input'] = function(block) {
-    var number = block.getFieldValue('NUM');
-    return [number, Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-
-Blockly.JavaScript['LEG_HIND_RIGHT'] = function(block) {
-    return ['LEG_HIND_RIGHT', Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-Blockly.JavaScript['LEG_HIND_LEFT'] = function(block) {
-    return ['LEG_HIND_LEFT', Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-Blockly.JavaScript['LEG_NO_LEG'] = function(block) {
-    return ['LEG_NO_LEG', Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-Blockly.JavaScript['LEG_FRONT_RIGHT'] = function(block) {
-    return ['LEG_FRONT_RIGHT', Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-Blockly.JavaScript['LEG_FRONT_LEFT'] = function(block) {
-    return ['LEG_FRONT_LEFT', Blockly.JavaScript.ORDER_ATOMIC];
-};
-
-
 
 Blockly.Blocks['number_input'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField(new Blockly.FieldNumber(0), "NUM");
-        this.setOutput(true, "Number");
-        this.setColour(460);
-        this.setTooltip("Input a number.");
-        this.setHelpUrl("");
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldNumber(0), "NUMBER");
+      this.setOutput(true, "Number");
+      this.setColour(230);
+      this.setTooltip("A changeable number input");
+      this.setHelpUrl("");
     }
 };
 
 
-Blockly.JavaScript['move'] = function(block) {
-    var leg = Blockly.JavaScript.valueToCode(block, 'Leg', Blockly.JavaScript.ORDER_ATOMIC);
-    var valueX = Blockly.JavaScript.valueToCode(block, 'ValueX', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-    var valueY = Blockly.JavaScript.valueToCode(block, 'ValueY', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-    var startSlice = Blockly.JavaScript.valueToCode(block, 'StartSlice', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-    var requestedSlices = Blockly.JavaScript.valueToCode(block, 'RequestedSlices', Blockly.JavaScript.ORDER_ATOMIC) || '0';
-    var secondFoot = Blockly.JavaScript.valueToCode(block, 'SecondFoot', Blockly.JavaScript.ORDER_ATOMIC);
-    
-    var code = `
-moves {
-  type: "step"
-  start_slice: ${startSlice}
-  requested_slices: ${requestedSlices}
-  step_params {
-    foot: ${leg}
-    offset {
-      x {
-        value: ${valueX}
-      }
-      y {
-        value: ${valueY}
-      }
-    }
-    second_foot: ${secondFoot}
-    mirror_x {
-    }
-    swing_waypoint {
-      x {
-      }
-      y {
-      }
-      z {
-      }
-    }
-    swing_height {
-    }
-    liftoff_velocity {
-    }
-    touchdown_velocity {
-    }
-  }
-}
-    `;
+Blockly.Python['number_input'] = function(block) {
+    var number = block.getFieldValue('NUMBER');
+    return [number, Blockly.Python.ORDER_ATOMIC];
+};
+
+
+Blockly.Python['power_off'] = function(block) {
+    var code = 'robot.power_off(cut_immediately=False)\n';
     return code;
+};
+
+Blockly.Python['move_forward'] = function(block) {
+    // Generate Python code for moving forward.
+    var distance = Blockly.Python.valueToCode(block, 'distance', Blockly.Python.ORDER_ATOMIC) || '0';
+    var code = 'distance_forward = ' + distance + '\n';
+    code += 'velocity_forward = 0.2  # Replace with your desired forward velocity\n';
+    code += 'duration_forward = distance_forward / velocity_forward\n\n';
+    code += 'cmd_forward = blocking_walk_velocity(velocity=velocity_forward, duration=duration_forward)\n';
+    code += 'robot_command_client.robot_command(cmd_forward)\n';
+    return code;
+};
+
+Blockly.Python['move_backward'] = function(block) {
+    var distance = Blockly.Python.valueToCode(block, 'distance', Blockly.Python.ORDER_ATOMIC) || '0';
+    var code = 'distance_backward = ' + distance + '\n';
+    code += 'velocity_backward = -0.2  # Replace with your desired backward velocity\n';
+    code += 'duration_backward = distance_backward / abs(velocity_backward)\n\n';
+    code += 'cmd_backward = blocking_walk_velocity(velocity=velocity_backward, duration=duration_backward)\n';
+    code += 'robot_command_client.robot_command(cmd_backward)\n';
+    return code;
+};
+
+Blockly.Python['stand'] = function(block) {
+    var code = 'cmd_stand = blocking_stand()\n';
+    code += 'robot_command_client.robot_command(cmd_stand)\n';
+    return code;
+};
+
+Blockly.Python['sit'] = function(block) {
+    var code = 'cmd_sit = blocking_sit()\n';
+    code += 'robot_command_client.robot_command(cmd_sit)\n';
+    return code;
+};
+
+
+// Validate the generated Python code
+Blockly.Python.validate = function(code) {
+    var lines = code.split('\n');
+    for (var i = 1; i < lines.length; i++) {
+      var currentBlock = lines[i].trim();
+      var previousBlock = lines[i - 1].trim();
+  
+      // Check if a 'sit' block is preceded by a 'stand' block
+      if (currentBlock.startsWith('cmd_sit') && !previousBlock.startsWith('cmd_stand')) {
+        return 'Sit block must be preceded by a Stand block.';
+      }
+    }
+    return null;  // Code is valid
 };
