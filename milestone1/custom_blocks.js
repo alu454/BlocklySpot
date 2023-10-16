@@ -107,27 +107,87 @@ Blockly.Blocks['move_down'] = {
     }
 };
 
-Blockly.Blocks['rotate_clockwise'] = {
+// PYTHON
+
+Blockly.Blocks['stand'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField("Rotate Clockwise");
+            .appendField("Stand Up");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(340);
-        this.setTooltip("Rotate Spot in place, clockwise.");
+        this.setColour(330);
+        this.setTooltip("Have spot stand up.");
     }
 };
 
-Blockly.Blocks['rotate_counterclockwise'] = {
+Blockly.Blocks['sit'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField("Rotate Clockwise");
+            .appendField("Sit Down");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(340);
+        this.setTooltip("Have spot sit down.");
+    }
+};
+
+Blockly.Blocks['twist'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Twist Torso");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(350);
-        this.setTooltip("Rotate Spot in place, clockwise.");
+        this.setTooltip("Twist Spot's torso in place.");
     }
 };
+
+Blockly.Blocks['roll'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Roll Torso");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(360);
+        this.setTooltip("Roll Spot's torso in place.");
+    }
+};
+
+Blockly.Blocks['tilt'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Tilt Torso");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(370);
+        this.setTooltip("Tilt Spot's torso in place.");
+    }
+};
+
+Blockly.Blocks['power_on'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Power On");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(380);
+        this.setTooltip("Turn Spot on.");
+    }
+};
+
+Blockly.Blocks['power_off'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Power Off");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(390);
+        this.setTooltip("Turn Spot off.");
+    }
+};
+
+
+// END PYTHON
 
 
 Blockly.Blocks['emergency_stop'] = {
@@ -136,7 +196,7 @@ Blockly.Blocks['emergency_stop'] = {
             .appendField("Emergency Stop");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(360);
+        this.setColour(460);
         this.setTooltip("An immediate command to halt all of Spot's ongoing actions.");
     }
 };
@@ -148,7 +208,7 @@ Blockly.Blocks['play_sound'] = {
             .appendField("Play sound");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(370);
+        this.setColour(470);
         this.setTooltip("Direct Spot to play a predetermined sound.");
     }
 };
@@ -164,7 +224,7 @@ Blockly.Blocks['repeat_x_times'] = {
             .setCheck(null);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(380);
+        this.setColour(480);
         this.setTooltip("Command Spot to repeat a series of actions a specified number of times.");
     }
 };
@@ -176,7 +236,7 @@ Blockly.Blocks['if_object_detected'] = {
             .appendField("If object detected");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(390);
+        this.setColour(490);
         this.setTooltip("Conditional execution: if Spot detects an object, it will perform a designated action.");
     }
 };
@@ -189,7 +249,7 @@ Blockly.Blocks['LEG_HIND_RIGHT'] = {
         this.setOutput(true, "LegType");
         this.appendDummyInput()
             .appendField("Hind Right Leg");
-        this.setColour(400);
+        this.setColour(500);
         this.setTooltip("Represents the hind right leg.");
         this.setHelpUrl("");
     }
@@ -200,7 +260,7 @@ Blockly.Blocks['LEG_HIND_LEFT'] = {
         this.setOutput(true, "LegType");
         this.appendDummyInput()
             .appendField("Hind Left Leg");
-        this.setColour(410);
+        this.setColour(510);
         this.setTooltip("Represents the hind left leg.");
         this.setHelpUrl("");
     }
@@ -211,7 +271,7 @@ Blockly.Blocks['LEG_NO_LEG'] = {
         this.setOutput(true, "LegType");
         this.appendDummyInput()
             .appendField("No Leg");
-        this.setColour(420);
+        this.setColour(520);
         this.setTooltip("No specific leg.");
         this.setHelpUrl("");
     }
@@ -222,7 +282,7 @@ Blockly.Blocks['LEG_FRONT_RIGHT'] = {
         this.setOutput(true, "LegType");
         this.appendDummyInput()
             .appendField("Front Right Leg");
-        this.setColour(430);
+        this.setColour(530);
         this.setTooltip("Represents the front right leg.");
         this.setHelpUrl("");
     }
@@ -233,7 +293,7 @@ Blockly.Blocks['LEG_FRONT_LEFT'] = {
         this.setOutput(true, "LegType");
         this.appendDummyInput()
             .appendField("Front Left Leg");
-        this.setColour(440);
+        this.setColour(540);
         this.setTooltip("Represents the front left leg.");
         this.setHelpUrl("");
     }
@@ -264,7 +324,7 @@ Blockly.Blocks['move'] = {
             .appendField("Second Foot:");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(450);
+        this.setColour(550);
         this.setTooltip("Move a specific leg by the given X and Y values.");
         this.setHelpUrl("");
     }
@@ -356,3 +416,68 @@ moves {
     `;
     return code;
 };
+
+// PYTHON
+Blockly.Python['stand'] = function(block) {
+    // Generate Python code for standing up.
+    var code = 'blocking_stand(command_client, timeout_sec=10)\n';
+    code += 'time.sleep(3)\n';
+    return code;
+};
+
+Blockly.Python['sit'] = function(block) {
+    // Generate Python code for sitting down.
+    var code = 'cmd = RobotCommandBuilder.synchro_sit_command()\n';
+    code += 'command_client.robot_command(cmd)\n';
+    code += 'time.sleep(3)\n';
+    return code;
+};
+
+Blockly.Python['twist'] = function(block) {
+    // Generate Python code for moving forward.
+    var code = 'footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.4, roll=0.0, pitch=0.0)\n';
+    code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
+    code += 'command_client.robot_command(cmd)\n';
+    code += 'time.sleep(3)\n';
+    return code;
+};
+
+Blockly.Python['roll'] = function(block) {
+    // Generate Python code for moving forward.
+    var code = 'footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.5, pitch=0.0)\n';
+    code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
+    code += 'command_client.robot_command(cmd)\n';
+    code += 'time.sleep(3)\n';
+    return code;
+};
+
+Blockly.Python['tilt'] = function(block) {
+    // Generate Python code for moving forward.
+    var code = 'footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=0.5)\n';
+    code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
+    code += 'command_client.robot_command(cmd)\n';
+    code += 'time.sleep(3)\n';
+    return code;
+};
+
+Blockly.Python['power_on'] = function(block) {
+    // Generate Python code for powering on.
+    var code = "robot.power_on(timeout_sec=20)\n";
+    code += "assert robot.is_powered_on(), 'Robot power on failed.'\n";
+    code += "robot.logger.info('Robot powered on.')\n";
+    code += "robot.logger.info('Commanding robot to stand...')\n";
+    code += "command_client = robot.ensure_client(RobotCommandClient.default_service_name)\n";
+    code += "blocking_stand(command_client, timeout_sec=10)\n";
+    code += "time.sleep(3)\n";
+    return code;
+};
+
+Blockly.Python['power_off'] = function(block) {
+    // Generate Python code for powering off.
+    var code = "robot.power_off(cut_immediately=False, timeout_sec=20)\n";
+    code += "assert not robot.is_powered_on(), 'Robot power off failed.'\n";
+    return code;
+};
+
+
+// PYTHON
