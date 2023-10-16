@@ -427,14 +427,14 @@ moves {
 };
 
 // PYTHON
-Blockly.Python['stand'] = function(block) {
+Blockly.JavaScript['stand'] = function(block) {
     // Generate Python code for standing up.
     var code = 'blocking_stand(command_client, timeout_sec=10)\n';
     code += 'time.sleep(3)\n';
     return code;
 };
 
-Blockly.Python['sit'] = function(block) {
+Blockly.JavaScript['sit'] = function(block) {
     // Generate Python code for sitting down.
     var code = 'cmd = RobotCommandBuilder.synchro_sit_command()\n';
     code += 'command_client.robot_command(cmd)\n';
@@ -442,7 +442,7 @@ Blockly.Python['sit'] = function(block) {
     return code;
 };
 
-Blockly.Python['twist'] = function(block) {
+Blockly.JavaScript['twist'] = function(block) {
     // Generate Python code for moving forward.
     var angle = Blockly.Python.valueToCode(block, 'ANGLE', Blockly.Python.ORDER_ATOMIC) || '0';
     var scaledValue = angle / 10.0;
@@ -453,9 +453,9 @@ Blockly.Python['twist'] = function(block) {
     return code;
 };
 
-Blockly.Python['roll'] = function(block) {
+Blockly.JavaScript['roll'] = function(block) {
     // Generate Python code for moving forward.
-    var angle = Blockly.Python.valueToCode(block, 'ANGLE', Blockly.Python.ORDER_ATOMIC) || '0';
+    var angle = Blockly.JavaScript.valueToCode(block, 'ANGLE', Blockly.JavaScript.ORDER_ATOMIC) || '0';
     var scaledValue = angle / 10.0;
     var code = "footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=" + scaledValue + ", pitch=0.0)\n";
     code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
@@ -464,9 +464,9 @@ Blockly.Python['roll'] = function(block) {
     return code;
 };
 
-Blockly.Python['tilt'] = function(block) {
+Blockly.JavaScript['tilt'] = function(block) {
     // Generate Python code for moving forward.
-    var angle = Blockly.Python.valueToCode(block, 'ANGLE', Blockly.Python.ORDER_ATOMIC) || '0';
+    var angle = Blockly.JavaScript.valueToCode(block, 'ANGLE', Blockly.JavaScript.ORDER_ATOMIC) || '0';
     var scaledValue = angle / 10.0;
     var code = "footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=" + scaledValue + ")\n";
     code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
@@ -475,7 +475,7 @@ Blockly.Python['tilt'] = function(block) {
     return code;
 };
 
-Blockly.Python['power_on'] = function(block) {
+Blockly.JavaScript['power_on'] = function(block) {
     // Generate Python code for powering on.
     var code = "robot.power_on(timeout_sec=20)\n";
     code += "assert robot.is_powered_on(), 'Robot power on failed.'\n";
@@ -487,7 +487,7 @@ Blockly.Python['power_on'] = function(block) {
     return code;
 };
 
-Blockly.Python['power_off'] = function(block) {
+Blockly.JavaScript['power_off'] = function(block) {
     // Generate Python code for powering off.
     var code = "robot.power_off(cut_immediately=False, timeout_sec=20)\n";
     code += "assert not robot.is_powered_on(), 'Robot power off failed.'\n";
