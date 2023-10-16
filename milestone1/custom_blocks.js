@@ -133,34 +133,43 @@ Blockly.Blocks['sit'] = {
 
 Blockly.Blocks['twist'] = {
     init: function() {
+        this.appendValueInput('ANGLE')
+            .setCheck('Number')  // Specify that the input should be a number
+            .appendField("Twist Torso by");
         this.appendDummyInput()
-            .appendField("Twist Torso");
+            .appendField("degrees");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(350);
-        this.setTooltip("Twist Spot's torso in place.");
+        this.setTooltip("Twist Spot's torso in place by the specified angle.");
     }
 };
 
 Blockly.Blocks['roll'] = {
     init: function() {
+        this.appendValueInput('ANGLE')
+            .setCheck('Number')  // Specify that the input should be a number
+            .appendField("Roll Torso by");
         this.appendDummyInput()
-            .appendField("Roll Torso");
+            .appendField("degrees");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(360);
-        this.setTooltip("Roll Spot's torso in place.");
+        this.setTooltip("Roll Spot's torso in place by the specified angle.");
     }
 };
 
 Blockly.Blocks['tilt'] = {
     init: function() {
+        this.appendValueInput('ANGLE')
+            .setCheck('Number')  // Specify that the input should be a number
+            .appendField("Tilt Torso by");
         this.appendDummyInput()
-            .appendField("Tilt Torso");
+            .appendField("degrees");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(370);
-        this.setTooltip("Tilt Spot's torso in place.");
+        this.setTooltip("Tilt Spot's torso in place by the specified angle.");
     }
 };
 
@@ -435,16 +444,20 @@ Blockly.Python['sit'] = function(block) {
 
 Blockly.Python['twist'] = function(block) {
     // Generate Python code for moving forward.
-    var code = 'footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.4, roll=0.0, pitch=0.0)\n';
-    code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
-    code += 'command_client.robot_command(cmd)\n';
-    code += 'time.sleep(3)\n';
+    var angle = Blockly.Python.valueToCode(block, 'ANGLE', Blockly.Python.ORDER_ATOMIC) || '0';
+    var scaledValue = angle / 10.0;
+    var code = "footprint_R_body = bosdyn.geometry.EulerZXY(yaw=" + scaledValue + ", roll=0.0, pitch=0.0)\n";
+    code += "cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n";
+    code += "command_client.robot_command(cmd)\n";
+    code += "time.sleep(3)\n";
     return code;
 };
 
 Blockly.Python['roll'] = function(block) {
     // Generate Python code for moving forward.
-    var code = 'footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.5, pitch=0.0)\n';
+    var angle = Blockly.Python.valueToCode(block, 'ANGLE', Blockly.Python.ORDER_ATOMIC) || '0';
+    var scaledValue = angle / 10.0;
+    var code = "footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=" + scaledValue + ", pitch=0.0)\n";
     code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
     code += 'command_client.robot_command(cmd)\n';
     code += 'time.sleep(3)\n';
@@ -453,7 +466,9 @@ Blockly.Python['roll'] = function(block) {
 
 Blockly.Python['tilt'] = function(block) {
     // Generate Python code for moving forward.
-    var code = 'footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=0.5)\n';
+    var angle = Blockly.Python.valueToCode(block, 'ANGLE', Blockly.Python.ORDER_ATOMIC) || '0';
+    var scaledValue = angle / 10.0;
+    var code = "footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=" + scaledValue + ")\n";
     code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
     code += 'command_client.robot_command(cmd)\n';
     code += 'time.sleep(3)\n';
