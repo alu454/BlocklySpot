@@ -195,6 +195,19 @@ Blockly.Blocks['power_off'] = {
     }
 };
 
+Blockly.Blocks['initialize'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("Initialize dog");
+      this.appendStatementInput("STATEMENTS")
+          .setCheck(null);
+      this.appendDummyInput()
+      this.setColour(230);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+
 
 // END PYTHON
 
@@ -430,7 +443,7 @@ moves {
 Blockly.JavaScript['stand'] = function(block) {
     // Generate Python code for standing up.
     var code = 'blocking_stand(command_client, timeout_sec=10)\n';
-    code += 'time.sleep(3)\n';
+    code += 'time.sleep(2)\n';
     return code;
 };
 
@@ -438,7 +451,7 @@ Blockly.JavaScript['sit'] = function(block) {
     // Generate Python code for sitting down.
     var code = 'cmd = RobotCommandBuilder.synchro_sit_command()\n';
     code += 'command_client.robot_command(cmd)\n';
-    code += 'time.sleep(3)\n';
+    code += 'time.sleep(2)\n';
     return code;
 };
 
@@ -449,7 +462,7 @@ Blockly.JavaScript['twist'] = function(block) {
     var code = "footprint_R_body = bosdyn.geometry.EulerZXY(yaw=" + scaledValue + ", roll=0.0, pitch=0.0)\n";
     code += "cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n";
     code += "command_client.robot_command(cmd)\n";
-    code += "time.sleep(3)\n";
+    code += "time.sleep(2)\n";
     return code;
 };
 
@@ -460,7 +473,7 @@ Blockly.JavaScript['roll'] = function(block) {
     var code = "footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=" + scaledValue + ", pitch=0.0)\n";
     code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
     code += 'command_client.robot_command(cmd)\n';
-    code += 'time.sleep(3)\n';
+    code += 'time.sleep(2)\n';
     return code;
 };
 
@@ -471,7 +484,7 @@ Blockly.JavaScript['tilt'] = function(block) {
     var code = "footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=" + scaledValue + ")\n";
     code += 'cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)\n';
     code += 'command_client.robot_command(cmd)\n';
-    code += 'time.sleep(3)\n';
+    code += 'time.sleep(2)\n';
     return code;
 };
 
@@ -483,7 +496,7 @@ Blockly.JavaScript['power_on'] = function(block) {
     code += "robot.logger.info('Commanding robot to stand...')\n";
     code += "command_client = robot.ensure_client(RobotCommandClient.default_service_name)\n";
     code += "blocking_stand(command_client, timeout_sec=10)\n";
-    code += "time.sleep(3)\n";
+    code += "time.sleep(2)\n";
     return code;
 };
 
@@ -493,6 +506,71 @@ Blockly.JavaScript['power_off'] = function(block) {
     code += "assert not robot.is_powered_on(), 'Robot power off failed.'\n";
     return code;
 };
+  
+Blockly.JavaScript['initialize'] = function(block) {
+    // The prefix code
+    var prefixCode = `
+import argparse
+import os
+import sys
+import time
 
+import bosdyn.client
+import bosdyn.client.lease
+import bosdyn.client.util
+import bosdyn.geometry
+from bosdyn.geometry import EulerZXY
+from bosdyn.client.robot_command import RobotCommandBuilder
+from bosdyn.api import trajectory_pb2
+from bosdyn.api.spot import robot_command_pb2 as spot_command_pb2
+from bosdyn.client import math_helpers
+from bosdyn.client.frame_helpers import GRAV_ALIGNED_BODY_FRAME_NAME, ODOM_FRAME_NAME, get_a_tform_b
+from bosdyn.client.image import ImageClient
+from bosdyn.client.robot_command import RobotCommandBuilder, RobotCommandClient, blocking_stand
+from bosdyn.client.robot_state import RobotStateClient
+from bosdyn.util import seconds_to_duration
+
+def hello_spot(config):
+    bosdyn.client.util.setup_logging(config.verbose)
+    sdk = bosdyn.client.create_standard_sdk('HelloSpotClient')
+    robot = sdk.create_robot(config.hostname)
+    bosdyn.client.util.authenticate(robot)
+    robot.time_sync.wait_for_sync()
+    assert not robot.is_estopped(), 'Robot is estopped. Please use an external E-Stop client, ' \
+                                    'such as the estop SDK example, to configure E-Stop.'
+    robot_state_client = robot.ensure_client(RobotStateClient.default_service_name)
+    lease_client = robot.ensure_client(bosdyn.client.lease.LeaseClient.default_service_name)
+    with bosdyn.client.lease.LeaseKeepAlive(lease_client, must_acquire=True, return_at_exit=True):\n
+    
+    `;
+
+    // Extracting the statements inside the block
+    var innerCode = Blockly.JavaScript.statementToCode(block, 'STATEMENTS');
+
+    // The postfix code
+    var postfixCode = `\n
+def main(argv):
+    """Command line interface."""
+    parser = argparse.ArgumentParser()
+    bosdyn.client.util.add_base_arguments(parser)
+    options = parser.parse_args(argv)
+    try:
+        hello_spot(options)
+        return True
+    except Exception as exc:
+        logger = bosdyn.client.util.get_logger()
+        logger.error('Hello, Spot! threw an exception: %r', exc)
+        return False
+
+if __name__ == '__main__':
+    if not main(sys.argv[1:]):
+        sys.exit(1)
+`;
+
+    // Combining all the sections together
+    var code = prefixCode + innerCode + postfixCode;
+
+    return code;
+};
 
 // PYTHON

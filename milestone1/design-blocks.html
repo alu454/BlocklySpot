@@ -37,7 +37,8 @@
             <block type="roll"></block> 
             <block type="tilt"></block> 
             <block type="power_on"></block> 
-            <block type="power_off"></block> 
+            <block type="power_off"></block>
+            <block type="initialize"></block> 
 
             <!--
             <block type="LEG_HIND_RIGHT"></block> 
@@ -52,7 +53,7 @@
     </div>
     <div class="row button-row">
         <button onclick="generateCode()">Generate Python</button>
-        <button onclick="runCode()">Run Python</button>
+        <!--<button onclick="runCode()">Run Python</button> -->
         <button onclick="saveBlocks()">Save Blocks</button>
         <button onclick="loadBlocks()">Load Blocks</button>
         <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
