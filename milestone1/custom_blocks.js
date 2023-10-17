@@ -115,7 +115,7 @@ Blockly.Blocks['stand'] = {
             .appendField("Stand Up");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(500);
+        this.setColour(300);
         this.setTooltip("Have spot stand up.");
     }
 };
@@ -126,7 +126,7 @@ Blockly.Blocks['sit'] = {
             .appendField("Sit Down");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(600);
+        this.setColour(350);
         this.setTooltip("Have spot sit down.");
     }
 };
@@ -140,7 +140,7 @@ Blockly.Blocks['twist'] = {
             .appendField("degrees");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(700);
+        this.setColour(210);
         this.setTooltip("Twist Spot's torso in place by the specified angle.");
     }
 };
@@ -154,7 +154,7 @@ Blockly.Blocks['roll'] = {
             .appendField("degrees");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(800);
+        this.setColour(220);
         this.setTooltip("Roll Spot's torso in place by the specified angle.");
     }
 };
@@ -168,7 +168,7 @@ Blockly.Blocks['tilt'] = {
             .appendField("degrees");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(900);
+        this.setColour(230);
         this.setTooltip("Tilt Spot's torso in place by the specified angle.");
     }
 };
@@ -190,7 +190,7 @@ Blockly.Blocks['power_off'] = {
             .appendField("Power Off");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(100);
+        this.setColour(800);
         this.setTooltip("Turn Spot off.");
     }
 };
