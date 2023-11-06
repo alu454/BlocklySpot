@@ -208,7 +208,20 @@ Blockly.Blocks['initialize'] = {
     }
   };
 
-
+  Blockly.Blocks['delay'] = {
+    init: function() {
+        this.appendValueInput("DELAY_TIME")
+            .setCheck("Number")
+            .appendField("Delay for");
+        this.appendDummyInput()
+            .appendField("seconds");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(360);
+        this.setTooltip("Add a delay or wait period to the code execution.");
+        this.setHelpUrl("");
+    }
+};
 // END PYTHON
 
 
@@ -570,6 +583,12 @@ if __name__ == '__main__':
     // Combining all the sections together
     var code = prefixCode + innerCode + postfixCode;
 
+    return code;
+};
+
+Blockly.JavaScript['delay'] = function(block) {
+    var delayTime = Blockly.JavaScript.valueToCode(block, 'DELAY_TIME', Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    var code = `time.sleep(${delayTime})\n`;
     return code;
 };
 
