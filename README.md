@@ -2,6 +2,8 @@
 
 [View Our Project](https://alu454.github.io/BlocklySpot/src/design-blocks.html)
 
+[How To Use Our Project](https://github.com/alu454/BlocklySpot/blob/main/src/README.md)
+
 **Group Members:**
 Drew Bozarth, Alan Lu, Karen Ngo, Thomas Ogawa
 
