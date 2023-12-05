@@ -12,8 +12,6 @@
 
 ## How to Run with a Spot Robot:
 
-https://alu454.github.io/BlocklySpot/src/design-blocks.html
-
 - Step 1:
   Use the [BlocklySpot Web Application](https://alu454.github.io/BlocklySpot/src/design-blocks.html) to create a custom movement sequence for Spot with the blocks available. Make sure you press the "Generate Python" button followed by the "Save Code to File" button to download a Python file with your custom movements. It will be called "BlocklySpotCode.py", do not change the name (if you have made multiple files, ensure the one you want to test has that exact name).
 
