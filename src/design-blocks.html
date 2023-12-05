@@ -54,7 +54,7 @@
     </div>
     <div class="row button-row">
         <button onclick="generateCode()">Generate Python</button>
-        <!--<button onclick="runCode()">Run Python</button> -->
+        <button id="saveButton" onclick="saveCode()">Save Code to File</button>
         <button onclick="saveBlocks()">Save Blocks</button>
         <button onclick="loadBlocks()">Load Blocks</button>
         <input type="file" id="loadInput" style="display: none;" onchange="loadBlocksFile(event)">
@@ -74,14 +74,23 @@
             document.getElementById('codeDiv').innerText = code;
         }
 
-        function runCode() {
-            var code = Blockly.JavaScript.workspaceToCode(workspace);
-            try {
-                var output = eval(code);
-                document.getElementById('outputDiv').innerText = output;
-            } catch (e) {
-                document.getElementById('outputDiv').innerText = 'Error: ' + e;
-            }
+        function saveCode() {
+            document.getElementById('saveButton').addEventListener('click', function() {
+                var contentToSave = document.getElementById('codeDiv').innerText;
+                var blob = new Blob([contentToSave], { type: 'text/plain' });
+                var fileName = 'BlocklySpotCode.py';
+
+                // Create a download link
+                var link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = fileName;
+
+                // Trigger a click event on the link to start the download
+                document.body.appendChild(link);
+                link.click();
+
+                document.body.removeChild(link);
+            });
         }
 
         function saveBlocks() {
