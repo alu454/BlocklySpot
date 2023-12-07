@@ -1,73 +1,6 @@
-// Setup Block
-Blockly.Blocks['setup'] = {
-    init: function() {
-        this.appendDummyInput().appendField("Setup Environment");
-        this.setColour(230);
-        this.setTooltip("Install necessary packages and set up the environment.");
-        this.setHelpUrl("");
-    }
-};
-
-// Download Repositories Block
-Blockly.Blocks['download_repos'] = {
-    init: function() {
-        this.appendDummyInput().appendField("Download Repositories");
-        this.setColour(240);
-        this.setTooltip("Download the required repositories.");
-        this.setHelpUrl("");
-    }
-};
-
-// Import Packages Block
-Blockly.Blocks['import_packages'] = {
-    init: function() {
-        this.appendDummyInput().appendField("Import Packages");
-        this.setColour(250);
-        this.setTooltip("Ensure the necessary packages are imported.");
-        this.setHelpUrl("");
-    }
-};
-
-// Dog Instantiation Block
-Blockly.Blocks['dog_instantiate'] = {
-    init: function() {
-        this.appendValueInput("IP_ADDRESS")
-            .setCheck("String")
-            .appendField("Instantiate Dog at IP");
-        this.setOutput(true, "Dog");
-        this.setColour(260);
-        this.setTooltip("Create an instance of the Dog using its IP address.");
-        this.setHelpUrl("");
-    }
-};
-
-// Ping Spot Block
-Blockly.Blocks['ping_spot'] = {
-    init: function() {
-        this.appendValueInput("IP_ADDRESS")
-            .setCheck("String")
-            .appendField("Ping Spot at IP");
-        this.setColour(270);
-        this.setTooltip("Ping Spot to check its availability.");
-        this.setHelpUrl("");
-    }
-};
-
-// Request Spot's ID Block
-Blockly.Blocks['request_spot_id'] = {
-    init: function() {
-        this.appendValueInput("IP_ADDRESS")
-            .setCheck("String")
-            .appendField("Request Spot ID at IP");
-        this.setOutput(true, "SpotID");
-        this.setColour(280);
-        this.setTooltip("Request unique details of Spot.");
-        this.setHelpUrl("");
-    }
-};
-
 // PYTHON
 
+// Sit/stand blocks
 Blockly.Blocks['stand'] = {
     init: function() {
         this.appendDummyInput()
@@ -90,6 +23,7 @@ Blockly.Blocks['sit'] = {
     }
 };
 
+// Adjusting torso blocks
 Blockly.Blocks['twist'] = {
     init: function() {
         this.appendDummyInput()
@@ -148,11 +82,23 @@ Blockly.Blocks['move'] = {
 
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(90);
+        this.setColour(709);
         this.setTooltip("Move spot by X and Y amounts.");
     }
 };
 
+Blockly.Blocks['return_spot'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Return Spot to start");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(516);
+        this.setTooltip("Return Spot to starting position.");
+    }
+};
+
+// Power blocks
 Blockly.Blocks['power_on'] = {
     init: function() {
         this.appendDummyInput()
@@ -175,77 +121,47 @@ Blockly.Blocks['power_off'] = {
     }
 };
 
+// Initialization block
 Blockly.Blocks['initialize'] = {
     init: function() {
         this.appendDummyInput()
             .appendField("Initialize dog");
         this.appendStatementInput("STATEMENTS")
             .setCheck(null);
-        this.setColour(310);
+        this.setColour(399);
         this.setTooltip("");
         this.setHelpUrl("");
     }
 };
 
+// Misc blocks
 
-// END PYTHON
-
-
-Blockly.Blocks['emergency_stop'] = {
+Blockly.Blocks['wait_seconds'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField("Emergency Stop");
+            .appendField("Wait")
+            .appendField(new Blockly.FieldTextInput('0', Blockly.FieldTextInput.numberValidator), 'SECONDS')
+            .appendField("seconds");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(460);
-        this.setTooltip("An immediate command to halt all of Spot's ongoing actions.");
+        this.setColour(303);
+        this.setTooltip("Wait a given number of seconds.");
     }
 };
 
-Blockly.Blocks['play_sound'] = {
+Blockly.Blocks['loop'] = {
     init: function() {
-        this.appendValueInput("SOUND_FILE")
-            .setCheck("String")
-            .appendField("Play sound");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(470);
-        this.setTooltip("Direct Spot to play a predetermined sound.");
+      this.appendDummyInput()
+          .appendField("Loop")
+          .appendField(new Blockly.FieldNumber(10, 1), "ITERATIONS")
+          .appendField("times");
+      this.appendStatementInput("BODY")
+          .setCheck(null)
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(990);
+      this.setTooltip("Loops and runs commands a set number of times.");
     }
-};
-
-Blockly.Blocks['repeat_x_times'] = {
-    init: function() {
-        this.appendValueInput("TIMES")
-            .setCheck("Number")
-            .appendField("Repeat");
-        this.appendDummyInput()
-            .appendField("times");
-        this.appendStatementInput("DO")
-            .setCheck(null);
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(480);
-        this.setTooltip("Command Spot to repeat a series of actions a specified number of times.");
-    }
-};
-
-Blockly.Blocks['if_object_detected'] = {
-    init: function() {
-        this.appendStatementInput("DO")
-            .setCheck(null)
-            .appendField("If object detected");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(490);
-        this.setTooltip("Conditional execution: if Spot detects an object, it will perform a designated action.");
-    }
-};
-
-
-Blockly.JavaScript['number_input'] = function(block) {
-    var number = block.getFieldValue('NUM');
-    return [number, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.Blocks['number_input'] = {
@@ -259,12 +175,14 @@ Blockly.Blocks['number_input'] = {
     }
 };
 
+// End block definitions
+
 // PYTHON
 Blockly.JavaScript['stand'] = function(block) {
     // Generate Python code for standing up.
 var code = String.raw`
         blocking_stand(command_client, timeout_sec=10)
-        time.sleep(1)
+        time.sleep(2)
 `;
     return code;
 };
@@ -274,7 +192,46 @@ Blockly.JavaScript['sit'] = function(block) {
 var code = String.raw`
         cmd = RobotCommandBuilder.synchro_sit_command()
         command_client.robot_command(cmd)
-        time.sleep(1)
+        time.sleep(2)
+`;
+    return code;
+};
+
+Blockly.JavaScript['twist'] = function(block) {
+    // Generate Python code for twisting spot's torso.
+    var angle = block.getFieldValue('ANGLE');
+    var scaledValue = angle / 10.0;
+var code = String.raw`
+        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=${scaledValue}, roll=0.0, pitch=0.0)
+        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
+        command_client.robot_command(cmd)
+        time.sleep(2)
+`;
+    return code;
+};
+
+Blockly.JavaScript['roll'] = function(block) {
+    // Generate Python code for rolling spot's torso.
+    var angle = block.getFieldValue('ANGLE');
+    var scaledValue = angle / 10.0;
+var code = String.raw`
+        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=${scaledValue}, pitch=0.0)
+        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
+        command_client.robot_command(cmd)
+        time.sleep(2)
+`;
+    return code;
+};
+
+Blockly.JavaScript['tilt'] = function(block) {
+    // Generate Python code for tilting spot's torso.
+    var angle = block.getFieldValue('ANGLE');
+    var scaledValue = angle / 10.0;
+var code = String.raw`
+        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=${scaledValue})
+        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
+        command_client.robot_command(cmd)
+        time.sleep(2)
 `;
     return code;
 };
@@ -326,41 +283,46 @@ var code = String.raw`
     return code;
 };
 
-Blockly.JavaScript['twist'] = function(block) {
-    // Generate Python code for moving forward.
-    var angle = block.getFieldValue('ANGLE');
-    var scaledValue = angle / 10.0;
+Blockly.JavaScript['return_spot'] = function(block) {
+    // Generate Python code for returning spot to the starting position.
 var code = String.raw`
-        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=${scaledValue}, roll=0.0, pitch=0.0)
-        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
-        command_client.robot_command(cmd)
-        time.sleep(1)
-`;
-    return code;
-};
-
-Blockly.JavaScript['roll'] = function(block) {
-    // Generate Python code for moving forward.
-    var angle = block.getFieldValue('ANGLE');
-    var scaledValue = angle / 10.0;
-var code = String.raw`
-        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=${scaledValue}, pitch=0.0)
-        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
-        command_client.robot_command(cmd)
-        time.sleep(1)
-`;
-    return code;
-};
-
-Blockly.JavaScript['tilt'] = function(block) {
-    // Generate Python code for moving forward.
-    var angle = block.getFieldValue('ANGLE');
-    var scaledValue = angle / 10.0;
-var code = String.raw`
-        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=${scaledValue})
-        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
-        command_client.robot_command(cmd)
-        time.sleep(1)
+        robot_state = robot_state_client.get_robot_state()
+        vision_T_body = get_vision_tform_body(
+            robot_state.kinematic_state.transforms_snapshot
+        )
+        command = robot_command_pb2.RobotCommand()
+        spot_x_position = 0
+        spot_y_position = 0
+        seconds_body = _SECONDS_FULL / 1
+        frame_name = VISION_FRAME_NAME
+        x = _L_ROBOT_SQUARE * spot_x_position
+        y = _L_ROBOT_SQUARE * spot_y_position
+        x_ewrt_vision, y_ewrt_vision, z_ewrt_vision = vision_T_body.transform_point(
+            x, y, 0
+        )
+        point = (
+            command.synchronized_command.mobility_command.se2_trajectory_request.trajectory.points.add()
+        )
+        point.pose.position.x = x_ewrt_vision
+        point.pose.position.y = y_ewrt_vision
+        point.pose.angle = vision_T_body.rot.to_yaw()
+        traj_time = (0 + 1) * seconds_body
+        duration = seconds_to_duration(traj_time)
+        point.time_since_reference.CopyFrom(duration)
+        command.synchronized_command.mobility_command.se2_trajectory_request.se2_frame_name = (
+            frame_name
+        )
+        speed_limit = SE2VelocityLimit(
+            max_vel=SE2Velocity(linear=Vec2(x=2, y=2), angular=0),
+            min_vel=SE2Velocity(linear=Vec2(x=-2, y=-2), angular=0),
+        )
+        mobility_params = spot_command_pb2.MobilityParams(vel_limit=speed_limit)
+        command.synchronized_command.mobility_command.params.CopyFrom(
+            RobotCommandBuilder._to_any(mobility_params)
+        )
+        robot.logger.info("Sending arm and body trajectory commands.")
+        command_client.robot_command(command, end_time_secs=time.time() + _SECONDS_FULL)
+        time.sleep(2)
 `;
     return code;
 };
@@ -374,7 +336,7 @@ var code = String.raw`
         robot.logger.info('Commanding robot to stand...')
         command_client = robot.ensure_client(RobotCommandClient.default_service_name)
         blocking_stand(command_client, timeout_sec=10)
-        time.sleep(1)
+        time.sleep(2)
 `;
     return code;
 };
@@ -387,9 +349,36 @@ var code = String.raw`
 `;
     return code;
 };
+
+Blockly.JavaScript['wait_seconds'] = function(block) {
+    // Generate Python code for waiting seconds.
+    var time = block.getFieldValue('SECONDS');
+var code = String.raw`
+        time.sleep(${time})
+`;
+    return code;
+};
+
+Blockly.JavaScript['number_input'] = function(block) {
+    var number = block.getFieldValue('NUM');
+    return [number, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+
+Blockly.JavaScript['loop'] = function(block) {
+    var iterations = block.getFieldValue('ITERATIONS');
+    var body = Blockly.JavaScript.statementToCode(block, 'BODY') || '';
+
+    var code = String.raw`
+        for i in range(${iterations}):
+            ${body}
+`;
+
+    return code;
+};
   
 Blockly.JavaScript['initialize'] = function(block) {
-    // The prefix code
+    // The prefix code for initialization
 var prefixCode = String.raw`
 import argparse
 import os
