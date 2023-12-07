@@ -169,7 +169,7 @@ Blockly.Blocks['power_off'] = {
         this.appendDummyInput()
             .appendField("Power Off");
         this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
+        this.setNextStatement(false);
         this.setColour(800);
         this.setTooltip("Turn Spot off.");
     }
@@ -177,16 +177,15 @@ Blockly.Blocks['power_off'] = {
 
 Blockly.Blocks['initialize'] = {
     init: function() {
-      this.appendDummyInput()
-          .appendField("Initialize dog");
-      this.appendStatementInput("STATEMENTS")
-          .setCheck(null);
-      this.appendDummyInput()
-      this.setColour(310);
-      this.setTooltip("");
-      this.setHelpUrl("");
+        this.appendDummyInput()
+            .appendField("Initialize dog");
+        this.appendStatementInput("STATEMENTS")
+            .setCheck(null);
+        this.setColour(310);
+        this.setTooltip("");
+        this.setHelpUrl("");
     }
-  };
+};
 
 
 // END PYTHON
@@ -264,8 +263,8 @@ Blockly.Blocks['number_input'] = {
 Blockly.JavaScript['stand'] = function(block) {
     // Generate Python code for standing up.
 var code = String.raw`
-        blocking_stand(command_client, timeout_sec=10);
-        time.sleep(1);
+        blocking_stand(command_client, timeout_sec=10)
+        time.sleep(1)
 `;
     return code;
 };
@@ -273,9 +272,9 @@ var code = String.raw`
 Blockly.JavaScript['sit'] = function(block) {
     // Generate Python code for sitting down.
 var code = String.raw`
-        cmd = RobotCommandBuilder.synchro_sit_command();
-        command_client.robot_command(cmd);
-        time.sleep(1);
+        cmd = RobotCommandBuilder.synchro_sit_command()
+        command_client.robot_command(cmd)
+        time.sleep(1)
 `;
     return code;
 };
@@ -286,43 +285,43 @@ Blockly.JavaScript['move'] = function(block) {
     var move_x = block.getFieldValue('X');
     var move_y = block.getFieldValue('Y');
 var code = String.raw`
-robot_state = robot_state_client.get_robot_state()
-vision_T_body = get_vision_tform_body(
-    robot_state.kinematic_state.transforms_snapshot
-)
-command = robot_command_pb2.RobotCommand()
-spot_x_position += ${move_y};
-spot_y_position -= ${move_x};
-seconds_body = _SECONDS_FULL / 1
-frame_name = VISION_FRAME_NAME
-x = _L_ROBOT_SQUARE * spot_x_position
-y = _L_ROBOT_SQUARE * spot_y_position
-x_ewrt_vision, y_ewrt_vision, z_ewrt_vision = vision_T_body.transform_point(
-    x, y, 0
-)
-point = (
-    command.synchronized_command.mobility_command.se2_trajectory_request.trajectory.points.add()
-)
-point.pose.position.x = x_ewrt_vision
-point.pose.position.y = y_ewrt_vision
-point.pose.angle = vision_T_body.rot.to_yaw()
-traj_time = (0 + 1) * seconds_body
-duration = seconds_to_duration(traj_time)
-point.time_since_reference.CopyFrom(duration)
-command.synchronized_command.mobility_command.se2_trajectory_request.se2_frame_name = (
-    frame_name
-)
-speed_limit = SE2VelocityLimit(
-    max_vel=SE2Velocity(linear=Vec2(x=2, y=2), angular=0),
-    min_vel=SE2Velocity(linear=Vec2(x=-2, y=-2), angular=0),
-)
-mobility_params = spot_command_pb2.MobilityParams(vel_limit=speed_limit)
-command.synchronized_command.mobility_command.params.CopyFrom(
-    RobotCommandBuilder._to_any(mobility_params)
-)
-robot.logger.info("Sending arm and body trajectory commands.")
-command_client.robot_command(command, end_time_secs=time.time() + _SECONDS_FULL)
-time.sleep(2)
+        robot_state = robot_state_client.get_robot_state()
+        vision_T_body = get_vision_tform_body(
+            robot_state.kinematic_state.transforms_snapshot
+        )
+        command = robot_command_pb2.RobotCommand()
+        spot_x_position += ${move_y}
+        spot_y_position -= ${move_x}
+        seconds_body = _SECONDS_FULL / 1
+        frame_name = VISION_FRAME_NAME
+        x = _L_ROBOT_SQUARE * spot_x_position
+        y = _L_ROBOT_SQUARE * spot_y_position
+        x_ewrt_vision, y_ewrt_vision, z_ewrt_vision = vision_T_body.transform_point(
+            x, y, 0
+        )
+        point = (
+            command.synchronized_command.mobility_command.se2_trajectory_request.trajectory.points.add()
+        )
+        point.pose.position.x = x_ewrt_vision
+        point.pose.position.y = y_ewrt_vision
+        point.pose.angle = vision_T_body.rot.to_yaw()
+        traj_time = (0 + 1) * seconds_body
+        duration = seconds_to_duration(traj_time)
+        point.time_since_reference.CopyFrom(duration)
+        command.synchronized_command.mobility_command.se2_trajectory_request.se2_frame_name = (
+            frame_name
+        )
+        speed_limit = SE2VelocityLimit(
+            max_vel=SE2Velocity(linear=Vec2(x=2, y=2), angular=0),
+            min_vel=SE2Velocity(linear=Vec2(x=-2, y=-2), angular=0),
+        )
+        mobility_params = spot_command_pb2.MobilityParams(vel_limit=speed_limit)
+        command.synchronized_command.mobility_command.params.CopyFrom(
+            RobotCommandBuilder._to_any(mobility_params)
+        )
+        robot.logger.info("Sending arm and body trajectory commands.")
+        command_client.robot_command(command, end_time_secs=time.time() + _SECONDS_FULL)
+        time.sleep(2)
 `;
     return code;
 };
@@ -332,10 +331,10 @@ Blockly.JavaScript['twist'] = function(block) {
     var angle = block.getFieldValue('ANGLE');
     var scaledValue = angle / 10.0;
 var code = String.raw`
-        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=${scaledValue}, roll=0.0, pitch=0.0);
-        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body);
-        command_client.robot_command(cmd);
-        time.sleep(1);
+        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=${scaledValue}, roll=0.0, pitch=0.0)
+        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
+        command_client.robot_command(cmd)
+        time.sleep(1)
 `;
     return code;
 };
@@ -345,10 +344,10 @@ Blockly.JavaScript['roll'] = function(block) {
     var angle = block.getFieldValue('ANGLE');
     var scaledValue = angle / 10.0;
 var code = String.raw`
-        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=${scaledValue}, pitch=0.0);
-        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body);
-        command_client.robot_command(cmd);
-        time.sleep(1);
+        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=${scaledValue}, pitch=0.0)
+        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
+        command_client.robot_command(cmd)
+        time.sleep(1)
 `;
     return code;
 };
@@ -358,10 +357,10 @@ Blockly.JavaScript['tilt'] = function(block) {
     var angle = block.getFieldValue('ANGLE');
     var scaledValue = angle / 10.0;
 var code = String.raw`
-        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=${scaledValue});
-        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body);
-        command_client.robot_command(cmd);
-        time.sleep(1);
+        footprint_R_body = bosdyn.geometry.EulerZXY(yaw=0.0, roll=0.0, pitch=${scaledValue})
+        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
+        command_client.robot_command(cmd)
+        time.sleep(1)
 `;
     return code;
 };
@@ -369,13 +368,13 @@ var code = String.raw`
 Blockly.JavaScript['power_on'] = function(block) {
     // Generate Python code for powering on.
 var code = String.raw`
-        robot.power_on(timeout_sec=20);
-        assert robot.is_powered_on(), 'Robot power on failed.';
-        robot.logger.info('Robot powered on.');
-        robot.logger.info('Commanding robot to stand...');
-        command_client = robot.ensure_client(RobotCommandClient.default_service_name);
-        blocking_stand(command_client, timeout_sec=10);
-        time.sleep(1);
+        robot.power_on(timeout_sec=20)
+        assert robot.is_powered_on(), 'Robot power on failed.'
+        robot.logger.info('Robot powered on.')
+        robot.logger.info('Commanding robot to stand...')
+        command_client = robot.ensure_client(RobotCommandClient.default_service_name)
+        blocking_stand(command_client, timeout_sec=10)
+        time.sleep(1)
 `;
     return code;
 };
@@ -383,8 +382,8 @@ var code = String.raw`
 Blockly.JavaScript['power_off'] = function(block) {
     // Generate Python code for powering off.
 var code = String.raw`
-        robot.power_off(cut_immediately=False, timeout_sec=20);
-        assert not robot.is_powered_on(), 'Robot power off failed.';
+        robot.power_off(cut_immediately=False, timeout_sec=20)
+        assert not robot.is_powered_on(), 'Robot power off failed.'
 `;
     return code;
 };

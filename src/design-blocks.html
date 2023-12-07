@@ -56,23 +56,22 @@
         }
 
         function saveCode() {
-            document.getElementById('saveButton').addEventListener('click', function() {
-                var contentToSave = document.getElementById('codeDiv').innerText;
+            //var contentToSave = document.getElementById('codeDiv').innerText;
+            var contentToSave = Blockly.JavaScript.workspaceToCode(workspace);
 
-                var blob = new Blob([contentToSave], { type: 'text/plain' });
-                var fileName = 'BlocklySpotCode1.py';
+            var blob = new Blob([contentToSave], { type: 'text/js' });
+            var fileName = 'BlocklySpotCode1.py';
 
-                // Create a download link
-                var link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = fileName;
+            // Create a download link
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
 
-                // Trigger a click event on the link to start the download
-                document.body.appendChild(link);
-                link.click();
+            // Trigger a click event on the link to start the download
+            document.body.appendChild(link);
+            link.click();
 
-                document.body.removeChild(link);
-            });
+            document.body.removeChild(link);
         }
 
         function saveBlocks() {
