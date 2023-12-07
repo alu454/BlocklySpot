@@ -18,37 +18,18 @@
     <div class="row blockly-row">
         <div id="blocklyDiv" class="full-width"></div>
         <xml id="toolbox" style="display: none">
-            <!-- <block type="dog_instantiate"></block>
-            <block type="ping_spot"></block>
-            <block type="request_spot_id"></block>
-            <block type="move_left"></block>
-            <block type="move_right"></block>
-            <block type="move_up"></block>
-            <block type="move_down"></block>
-            <block type="rotate_clockwise"></block>
-            <block type="rotate_counterclockwise"></block>
-            <block type="emergency_stop"></block>
-            <block type="play_sound"></block>
-            <block type="repeat_x_times"></block>
-            <block type="if_object_detected"></block> -->
+            
+            <block type="initialize"></block> 
+            <block type="power_on"></block> 
+            <block type="power_off"></block>
+            <block type="move"></block> 
             <block type="stand"></block> 
             <block type="sit"></block> 
             <block type="twist"></block> 
             <block type="roll"></block> 
             <block type="tilt"></block> 
-            <block type="power_on"></block> 
-            <block type="power_off"></block>
-            <block type="initialize"></block> 
             
-
-            <!--
-            <block type="LEG_HIND_RIGHT"></block> 
-            <block type="LEG_HIND_LEFT"></block> 
-            <block type="LEG_NO_LEG"></block> 
-            <block type="LEG_FRONT_RIGHT"></block> 
-            <block type="LEG_FRONT_LEFT"></block>  
-            <block type="move"></block>
-            -->
+            
            <block type="number_input"></block>
         </xml>
     </div>
@@ -77,8 +58,9 @@
         function saveCode() {
             document.getElementById('saveButton').addEventListener('click', function() {
                 var contentToSave = document.getElementById('codeDiv').innerText;
+
                 var blob = new Blob([contentToSave], { type: 'text/plain' });
-                var fileName = 'BlocklySpotCode.py';
+                var fileName = 'BlocklySpotCode1.py';
 
                 // Create a download link
                 var link = document.createElement('a');
