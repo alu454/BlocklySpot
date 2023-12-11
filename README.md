@@ -60,3 +60,8 @@ In the context of creating a DSL using Blockly, parsing involves the translation
 - ## **Alan Lu:**
 - ## **Karen Ngo:**
 - ## **Thomas Ogawa:**
+
+### Special Thanks:
+
+- Thank you to [Miyuki Weldon](https://www.linkedin.com/in/m-weldon/) for allowing us to use the Makerspace and its materials (like Spot!), and for teaching us about how to control Spot along with how to properly setup and takedown the robot.
+- Thank you to [Professor Kurz](https://www.linkedin.com/in/alexander-kurz-61a453151/) for green-lighting this project and for supporting our group along the way with encouragement, advice, and feature implementation ideas!
