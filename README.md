@@ -2,14 +2,14 @@
 
 [View Our Project!](https://alu454.github.io/BlocklySpot/src/design-blocks.html)
 
-[How To Use Our Project](https://github.com/alu454/BlocklySpot/blob/main/src/README.md)
+## Functionality:
 
-[About Our Project Video](https://drive.google.com/file/d/1kx3D54Kb6ScGtKKuLNZiiKoPzSICsBUm/view)
+[How To Use Our Project](https://github.com/alu454/BlocklySpot/blob/main/src/README.md)
 
 ### Project Videos
 
-| [About Our Project](https://drive.google.com/file/d/1kx3D54Kb6ScGtKKuLNZiiKoPzSICsBUm/view) | [Technical Introduction/Demo]() |
-| ------------------------------------------------------------------------------------------- | ------------------------------- |
+| [About Our Project](https://drive.google.com/file/d/1kx3D54Kb6ScGtKKuLNZiiKoPzSICsBUm/view) | [Technical Introduction/Demo](https://drive.google.com/file/d/1kx3D54Kb6ScGtKKuLNZiiKoPzSICsBUm/view) |
+| ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 
 ## Group Members:
 
@@ -53,12 +53,16 @@ In the context of creating a DSL using Blockly, parsing involves the translation
 ## Contributions:
 
 - **Drew Bozarth:**
+
   - Worked on integrating [Spot SDK](https://github.com/boston-dynamics/spot-sdk) with our project and developing the framework code to interact with spot.
   - Created the custom blocks for torso rotation, standing/sitting, and returning Spot to start.
   - Created 3 build shells scripts to streamline the process of sending the code developed on our Blockly site to Spot for command execution.
   - Implemented a set of default blocks for the website to provide an example to the users of how to create a successful Spot program.
+
 - ## **Alan Lu:**
+
 - ## **Karen Ngo:**
+
 - ## **Thomas Ogawa:**
 
 ### Special Thanks:
