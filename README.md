@@ -60,6 +60,11 @@ In the context of creating a DSL using Blockly, parsing involves the translation
   - Implemented a set of default blocks for the website to provide an example to the users of how to create a successful Spot program.
 
 - ### **Alan Lu:**
+  - Create the custom block for initializing spot and it's connections
+  - Explored the [Spot SDK](https://github.com/boston-dynamics/spot-sdk) and [Spot API](https://dev.bostondynamics.com/) to understand how to control Spot via:
+    - [Choreography](https://dev.bostondynamics.com/python/bosdyn-choreography-client/src/bosdyn/choreography/client/choreography)
+    - Keyboard Inputs
+  - Created the website's UI and integrated the Blockly workspace into the website
 
 - ### **Karen Ngo:**
 
