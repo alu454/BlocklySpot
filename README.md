@@ -1,4 +1,4 @@
-# Boston_Dynamics_Dog_API
+# BlocklySpot
 
 [View Our Project](https://alu454.github.io/BlocklySpot/src/design-blocks.html)
 
