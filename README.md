@@ -8,7 +8,7 @@
 
 ### Project Videos
 
-| [About Our Project](https://drive.google.com/file/d/1kx3D54Kb6ScGtKKuLNZiiKoPzSICsBUm/view) | [Technical Introduction/Demo](https://drive.google.com/file/d/1kx3D54Kb6ScGtKKuLNZiiKoPzSICsBUm/view) |
+| [About Our Project](https://drive.google.com/file/d/1kx3D54Kb6ScGtKKuLNZiiKoPzSICsBUm/view) | [Technical Introduction/Demo](https://drive.google.com/file/d/1vQfA_vx-FHegfnjZKcCLNC6PWii21I0Q/view?usp=sharing) |
 | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 
 ## Group Members:
