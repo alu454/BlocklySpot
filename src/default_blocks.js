@@ -1,0 +1,5 @@
+var xmlString = '<xml xmlns="https://developers.google.com/blockly/xml"><block type="initialize" id="tl+:8iA-wXU.GTeT(+c]" x="62" y="30"><statement name="STATEMENTS"><block type="power_on" id="L`V{s?s3/{WGgs3Z6D2v"><next><block type="tilt" id="[p,tvR,J9j%Z,p+utnFt"><field name="ANGLE">20</field><next><block type="sit" id="n=qkDR~FLxl38_hw6tCC"><next><block type="wait_seconds" id="[}wX7-JeV:?1R]F:;q|Z"><field name="SECONDS">2</field><next><block type="stand" id="HmhX|0NG]pke^we`2(W{"><next><block type="move" id="5WGx8#);l%O[=Mmr%0/D"><field name="X">1</field><field name="Y">2</field><next><block type="power_off" id="z7X?!W---]b.Rl]7g?d{"></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></xml>';
+var parser = new DOMParser();
+var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+var serializer = new XMLSerializer();
+window.defaultBlocks = serializer.serializeToString(xmlDoc);

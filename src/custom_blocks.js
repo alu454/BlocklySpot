@@ -125,7 +125,7 @@ Blockly.Blocks['power_off'] = {
 Blockly.Blocks['initialize'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField("Initialize dog");
+            .appendField("Initialize Spot");
         this.appendStatementInput("STATEMENTS")
             .setCheck(null);
         this.setColour(399);

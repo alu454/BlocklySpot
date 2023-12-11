@@ -4,6 +4,7 @@
     <title>Blockly + Spot</title>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="custom_blocks.js"></script>
+    <script src="default_blocks.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
@@ -13,6 +14,23 @@
             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="20" height="20">
             View Source on GitHub
             </a>
+        </p>
+    </div>
+    <div id="instructions">
+        <p>
+            <details>
+                <summary>Instructions</summary>
+                <p> The default BlocklySpot program you see below will initialize spot and power him on, then demonstrate some of his commands</p>
+                <p> like tilting his torso, sitting, waiting, standing, and moving. The program ends with powering off spot.</p>
+                <p> "Generate Python" compiles the program into Python code (which is the code we use to interact with Spot), </p>
+                <p> and "Save Code to File" will download the Python file straight to your computer.</p>
+                <p> You can remove a program by dragging it out of the workspace. You can write your own program by dragging blocks from the toolbox to the workspace. </p>
+                <p class="small-gap"> By using "Save Blocks" you can save your program to a file and also load in a program by file using "Load Blocks".</p>
+                <p> When creating a program for Spot, make sure to follow some rules: Create an "Initialize Spot" block and place all of your command blocks inside of it.</p>
+                <p> Your custom commands should begin with "Power On", and end with "Power Off" blocks. Spot will not move or rotate while sitting,</p>
+                <p> so if you make Spot "Sit Down", be sure to make him "Stand Up" before placing a movement or rotational block.</p>
+                <p> <a href="https://drive.google.com/file/d/1kx3D54Kb6ScGtKKuLNZiiKoPzSICsBUm/view">Watch Our Demo Video Here!</a></p>
+            </details>
         </p>
     </div>
     <div class="row blockly-row">
@@ -50,6 +68,9 @@
             toolbox: document.getElementById('toolbox'),
             scrollbars: true
         });
+        // Add in default Blocks
+        var defaultBlocksDom = Blockly.utils.xml.textToDom(defaultBlocks);
+        Blockly.Xml.domToWorkspace(defaultBlocksDom, workspace);
 
         function generateCode() {
             var code = Blockly.JavaScript.workspaceToCode(workspace);
