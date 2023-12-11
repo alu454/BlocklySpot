@@ -69,7 +69,10 @@ In the context of creating a DSL using Blockly, parsing involves the translation
 - ### **Karen Ngo:**
 
 - ### **Thomas Ogawa:**
-
+  - Corresponded with Chapman techshop to get permissions and times to work with robotic dogs.
+  - Analyzed [Spot SDK](https://github.com/boston-dynamics/spot-sdk) and [Spot API](https://dev.bostondynamics.com/) to understand how to control Spot via:
+    - Movement through code.
+  - Worked on video deliverables and presentations.
 ### Special Thanks:
 
 - Thank you to [Miyuki Weldon](https://www.linkedin.com/in/m-weldon/) for allowing us to use the Makerspace and its materials (like Spot!), and for teaching us about how to control Spot along with how to properly setup and takedown the robot.
