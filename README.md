@@ -67,6 +67,10 @@ In the context of creating a DSL using Blockly, parsing involves the translation
   - Created the website's UI and integrated the Blockly workspace into the website
 
 - ### **Karen Ngo:**
+  - Worked on Project deliverables
+  - Boston Dynamic Dog Operations
+  - Worked on HTML and CSS for the website
+  - Worked on video deliverables and presentations.
 
 - ### **Thomas Ogawa:**
   - Corresponded with Chapman techshop to get permissions and times to work with robotic dogs.
