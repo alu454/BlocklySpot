@@ -54,7 +54,7 @@ In the context of creating a DSL using Blockly, parsing involves the translation
 
 - ### **Drew Bozarth:**
 
-  - Worked on integrating [Spot SDK](https://github.com/boston-dynamics/spot-sdk) with our project and developing the framework code to interact with spot.
+  - Worked on integrating our project with the [Spot SDK](https://github.com/boston-dynamics/spot-sdk) and developing the framework code to interact with spot.
   - Created the custom blocks for torso rotation, standing/sitting, and returning Spot to start.
   - Created 3 build shells scripts to streamline the process of sending the code developed on our Blockly site to Spot for command execution.
   - Implemented a set of default blocks for the website to provide an example to the users of how to create a successful Spot program.
